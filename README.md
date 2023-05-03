@@ -5,7 +5,7 @@ This udemy course can be found here [Angular 2023 Udemy Course](https://www.udem
 
 ## Notes 
 
-## Section 1
+## Section 1 Getting Started
 
 What is Angular? 
 
@@ -23,7 +23,206 @@ npm install --save bootstrap@3
 head to angular.json and goto styles array
 and add a new field "node_modules/bootstrap/dist/css/bootstrap.min.css"
 
-## Section 33 Bonus: Typescript Imtroduction 
+
+
+## Section 2: The Basics
+
+Angular Startup Sequence from Browser:
+
+Index File is loaded with script imports
+    -- inline.bundle.js
+    -- polyfills.bundle.js
+    -- styles.bundle.js
+    -- vendor.bundle.js
+    -- main.bundle.js
+
+These script are executed
+    -- main.bundle.js is executed first you can see this in your src folder in the 
+       main.ts because the ts file gets compiled to the main.bundle.js file
+
+    ```
+
+    platformBrowserDynamic().bootstrapModule(AppModule)
+    .catch(err => console.error(err));
+
+    ```
+
+    --- AppModule has a bootstrap array that holds the AppComponent
+        and sees the template html and logic files and loads this component
+        into the body of the SPA
+
+    ```
+
+    bootstrap: [AppComponent]
+
+    ```
+
+    and finally angular app is displayed in browser.
+
+    Components:
+    Role of AppModule and component declaration
+
+    ```
+
+    // Declarations holds all the references to the APP
+    declarations: [
+        AppComponent,
+        CustomCoponent
+    ] 
+
+    // add some other modules into this main module
+    imports: [
+        BrowserModule,
+        FormsModule
+    ]
+    
+    ```
+
+    CLI: generates template, logic, style and testing file
+        ng g c componentName 
+
+    The above method adds an import automatically to the  app.module.ts
+
+    Styles:
+
+    ```
+    // Multiple style files allowed
+    styleUrls: ['./app.component.css','other style files ']
+
+    ```
+
+    selector of component in template as a attribute
+
+
+    ```
+
+    selector: [nameofComponent]
+
+    //in template
+
+    <div nameofComponent>
+
+    ```
+
+    selector of component as class
+
+    ```
+    selector: .nameofComponent
+
+    <div class="nameofComponent">
+    ```
+
+    String Interpolation: coming from the logic file .ts
+
+    ```
+    // all interpolated strings must return a string 
+    // ternary operators allowed
+    <div> {{ isEnabled : 'enabled' ? 'disabled' }}
+    ```
+
+    Property Binding
+
+    ```
+
+    [propertyName]="valueInLogicFile"
+
+    ```
+
+    Event Binding 
+
+    ```
+
+    <div (click)="nameofFunctioninLogic($event)">
+
+    ```
+
+    Two Way Data Binding 
+
+    ```
+
+    // Note be sure to import the FormsModule in the app.module.ts file 
+    <input [(ngModel)]="valuefromLogicFile"
+
+
+    ```
+
+    Directives
+
+    Instructions for the DOM
+
+    used as attribute
+
+    ```
+    <p appTurnGreen>
+    ```
+
+    Custom Directive
+
+    ```
+
+    @Directive({
+        selector: 'appTurnGreen'
+    })
+    export class TurnGreenDirective
+    {
+        //logic
+    }
+
+    ```
+    
+    Structural Directive
+
+    *ngIf
+
+    ```
+    // If it's false this element will not be added to the DOM otherwise it will be added
+    <p *ngIf="isEnabled">
+    ```
+
+    *ngIf with else and using a marker
+    ```
+    <p *ngIf="isEnabled; else #noServerCreated">
+    <ngTemplate #noServerCreated>
+        <p>No Server was created
+    </ngTemplate>
+    ```
+
+    ngStyle used with []
+
+    ```
+
+    <p [ngStyle]="{ backgroundColor: getColor() }">
+
+    ```
+
+    ngClass
+
+    ```
+    // online been the css class in the style of the 
+    // component and the serverStatus been property on
+    // logic of component
+     <p [ngClass]="{online: serverStatus === 'online'}">
+    ```
+
+    *ngFor
+
+    used to iterate over a list
+
+    ```
+    // List of persons
+    people:person[];
+
+    // in template
+    <div *ngFor="let person of persons">
+        <p>This is the person {{ person.name }}</p>
+    </div>
+
+
+        
+
+
+
+## Section 33 Bonus: Typescript Introduction 
 
 What is typescript?
 

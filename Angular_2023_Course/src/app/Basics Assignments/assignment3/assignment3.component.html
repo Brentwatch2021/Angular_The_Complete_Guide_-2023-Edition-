@@ -1,0 +1,6 @@
+<p>Assignment 3</p>
+<button (click)="handleParagraghDisplay()" class="btn btn-primary">Display Details</button>
+<p *ngIf="isContentDisplayed">Howzit Bru</p>
+
+<p *ngFor="let loggedClickTimeStamp of loggedClicks; index as i" [ngClass]="{after5fontColor: i >= 5}"
+     [ngStyle]="{ backgroundColor: getColor(i) }">The time at which this was logged Index {{i}} {{  loggedClickTimeStamp }}</p>
