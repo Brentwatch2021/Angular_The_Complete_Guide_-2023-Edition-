@@ -10,4 +10,10 @@ export class ShoppingListComponent {
   ingredients:Ingredient[] = [
     new Ingredient('flour',4)
   ];
+
+
+  onIngredientAddedFromEdit(ingredient:Ingredient)
+  {
+    this.ingredients.push(ingredient);
+  }
 }

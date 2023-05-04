@@ -217,8 +217,135 @@ These script are executed
         <p>This is the person {{ person.name }}</p>
     </div>
 
+## Section 5 
 
-        
+Custom property binding 
+
+To allow a component to accept a custom value
+
+```
+.ts
+
+// with alias 'srvElement'
+@Input('srvElement') element:type
+
+.html parent consuming 
+
+[srvElement]="valuefromparent"
+```
+
+// using Output for event emitters allowing parent to 
+@Output() handleClientFormSave = new EventEmitter();
+
+
+```
+
+View Encasulation 
+
+Is the ability of Angular to encapsulate all the styles of a component and prevent the changes occuring on other
+components
+
+In order to overwrite this default behavior and allow styles applied in one component to apply to all
+you can use the following property in the component:
+
+```
+
+@Component
+{
+    // This would remove the default ability of Angular
+    encapsulation: ViewEncapsulation.None
+    encapsulation: ViewEncapsulation.Emulated Default
+    encapsulation: ViewEncapsulation.Native only applies to some browsers not trusted
+}
+
+Local References in template (Without ViewChild)
+
+```
+
+//Adding local references in the DOM
+//Can only be used in the template ONLY template
+// It can be passed to TS file via event
+<input #elementref>
+
+<element #elementref (click)="handleElement(elementref)">
+
+// .ts file
+// adding static typing for the html element coming through
+handleElement(element:HTMLInputElement)
+
+```  
+
+Local References in template (With ViewChild)
+
+```
+
+.html
+<input #inputelement>
+
+.ts
+// viewchild paramater refers to template name
+@ViewChild('inputelement', {static: false}) inputElementReference: ElementRef;
+
+// The above can be used in the ts file as follows
+const itemName = this.inputElementReference.nativeElement.value;
+
+
+
+
+Component LifeCycle 
+
+```
+// ngOnChanges Called after a property bound Input property changes can occur multiple times
+ngOnChanges
+
+// ngInit
+// Runs after the constructor
+
+// ngDoCheck runs when something changes used for change detection can run many times for rendering
+
+// afterContentInit called after content (ng-content) has been projected into view
+
+// ngAfterContentChecked called every time the projected content has been checked
+
+// ngAfterViewChecked called every time the view (and child views) have been checked
+
+// ngOnDestroy Called before the object is about to be destroyed
+```
+
+##Section 9 Dependacy Injection and Services
+
+Allows for logic to be centrally managed in app
+
+eg. a user service can be used to see what roles they belong to
+and the dependacy injection allows for it to be dispersed anywhere in the Angular app.
+
+```
+
+@Component
+providers: [LoggingService]
+
+constructor(private loggingService:LoggingService)
+
+// alternative using the inject keyword
+this.loggingService = inject(LoggingService);
+
+```
+
+Hierarchal service only propagates down the tree of components and is a singleton instance per module
+
+child service instances can ovveride parent instances
+
+when removed from providers array in child then the parent instance is used instead
+
+highest level instance is in module
+
+```
+// How to enable a service for injection service to inject into another service
+
+@injectable
+
+```
+
 
 
 
