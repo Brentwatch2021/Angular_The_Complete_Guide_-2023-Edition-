@@ -4,6 +4,8 @@
     </div>
     <div class="col-md-7">
         <p *ngIf="!recipeSelected">Please select a recipe</p>
-        <app-recipe-detail *ngIf="recipeSelected" [recipeSelectedFromList]="recipeSelected"></app-recipe-detail>
+        
+        <!-- <app-recipe-detail *ngIf="recipeSelected" [recipeSelectedFromList]="recipeSelected"></app-recipe-detail> -->
+        <router-outlet></router-outlet>
     </div>
 </div>

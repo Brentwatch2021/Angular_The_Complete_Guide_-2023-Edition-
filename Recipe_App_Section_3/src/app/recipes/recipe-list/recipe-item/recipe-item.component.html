@@ -1,4 +1,5 @@
-<a href="#" *ngIf="recipe" class="list-group-item clearfix" (click)="onrecipeSelected()">
+<!-- <a style="cursor: pointer;" *ngIf="recipe" class="list-group-item clearfix" (click)="onrecipeSelected()"> -->
+<a routerLinkActive="active" style="cursor: pointer;" *ngIf="recipe" class="list-group-item clearfix" [routerLink]="['/recipes', recipe.id]">
     <div class="pull-left">
         <h4 class="list-group-item-heading">Recipe Name: {{ recipe.name }}</h4>
         <p class="list-group-item-text">Description: {{ recipe.description }}</p>
