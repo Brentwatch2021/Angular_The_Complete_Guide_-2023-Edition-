@@ -347,6 +347,51 @@ highest level instance is in module
 ```
 
 
+## Section 15 Forms
+
+Two Approaches 
+
+1. Template Driven
+    Angular infers the Form Object from the DOM
+
+2. Reactive
+    Form is created programmatically and synchronized with the DOM
+
+
+Template Driven Forms:
+
+```
+
+<input id="emailAddress" name="emailAddress" type="text" class="form-control" required>
+
+```
+
+The above code will not prevent the user from NOT entering text into this field.
+
+```
+
+valid: true
+
+```
+
+However if the input element is decorated with the ngModel attribute then it shall behave as desired.
+
+```
+
+<input id="emailAddress" name="emailAddress" type="text" class="form-control" ngModel required>
+
+```
+
+Then the valid attribute on the form will reflect the desired results if no text is entered and submitted
+then the valid attribute will return false if no text is entered.
+
+```
+
+valid: false
+
+```
+
+
 
 
 ## Section 33 Bonus: Typescript Introduction 
