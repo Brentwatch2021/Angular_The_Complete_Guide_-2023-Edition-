@@ -1,0 +1,35 @@
+<div class="container">
+<div class="row">   
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+        <form (ngSubmit)="onSubmit()" #aform="ngForm">
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input #emailInput="ngModel" type="email" name="email" ngModel required email>
+            </div>
+            <p *ngIf="!emailInput.valid && emailInput.touched">Please enter valid an email</p>
+            <div class="form-group">
+                <select name="plan2" id="plan2" [ngModel]="defaultPlan" class="form-control">
+                    <option value="basic">Basic</option>
+                    <option value="advanced">Advanced</option>
+                    <option value="pro">Pro</option>
+                </select>
+            </div>
+            
+            <div class="form-control">
+                <label for="password">Password</label>
+                <input #passwordInput="ngModel" ngModel name="password" type="password" required>
+            </div>
+            <p *ngIf="!passwordInput.valid && passwordInput.touched">Password must be inputted</p>
+            <div >
+                <button [disabled]="!aform.valid" class="btn btn-primary form-control" type="submit" >Submit</button>
+            </div>
+        </form>
+        <div *ngIf="userSubmitted">
+            <p>User Details selected</p>
+            <p>Email: {{ user.email }}</p>
+            <p>Plan: {{ user.plan }}</p>
+        </div>
+
+    </div>
+</div>
+</div>

@@ -1,0 +1,74 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+            <form (ngSubmit)="onSubmit()" #f="ngForm">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input #nameInput="ngModel" type="text" id="name" name="name" class="form-control" required ngModel>
+                    <button class="btn btn-primary" type="button" (click)="suggestName()">Suggest a Name</button>
+                </div>
+                <p class="help-block" *ngIf="!nameInput.valid && nameInput.touched"> Please enter a name.</p>
+                <div class="form-group">
+                    <label for="emailAdress">Email:</label>
+                    <input id="emailAddress" name="emailAddress" type="email" class="form-control" ngModel email required>
+                </div>
+
+                <div class="form-group">
+                    <label for="plan">Plan</label>
+                    <select name="plan" [ngModel]="defaultPlan" id="plan" class="form-control">
+                        <option value="basic">Basic</option>
+                        <option value="advanced">Advanced</option>
+                        <option value="pro">Pro</option>
+                    </select>
+                </div>
+
+                <div class="radio" *ngFor="let gender of genders">
+                        <label>
+                            <input type="radio" name="gender" ngModel [value]="gender" required>
+                            {{gender}}
+                        </label>
+                </div>
+
+                <div class="form-group" ngModelGroup="Rating_AND_Review"
+                    #RatingandReview="ngModelGroup"
+                >
+                    <div class="form-group">
+                        <select name="rating" [ngModel]="rating" id="rating">
+                            <option value="1_star">1 Star</option>
+                            <option value="2_star">2 Star</option>
+                            <option value="3_star">3 Star</option>
+                            <option value="4_star">4 Star</option>
+                            <option value="5_star">5 Star</option>
+                        </select>
+                    </div>
+                    
+                    
+
+                    <div class="form-group">
+                        <textarea class="form-control" name="review" [(ngModel)]="answer" id="review" ngModel required rows="3"></textarea>
+                    </div>
+                    <p>Your Review: {{ answer }}</p>
+                </div>
+                <p class="help-block" *ngIf="!RatingandReview.valid && RatingandReview.touched">Please Rate and Review our service thanks.</p>
+                <div class="form-group">
+                    <button class="btn btn-primary" type="submit" [disabled]="!f.valid">Submit</button>
+                </div>
+            </form>
+        </div>    
+    </div>
+    <hr>
+    <div *ngIf="userSubmitted" class="row">
+        <div class="col-xs-12">
+            <h3>My Data to Submit</h3>
+            <p>Name: {{ user.name }}</p>
+            <p>Email: {{ user.email }} </p>
+            <p>Plan:  {{ user.plan }} </p>
+            <p>Gender: {{ user.gender }}</p>
+            <p>Rating: {{ user.rating }}</p>
+            <p>Review:  {{ user.review }} </p>
+        </div>
+    </div>
+
+
+</div>
+

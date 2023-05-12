@@ -15,6 +15,8 @@ import { MainGameComponent } from './Section5/main-game/main-game.component';
 import { Section9mainComponent } from './Section9/section9main/section9main.component';
 import { InactiveUsersComponent } from './Section9/inactive-users/inactive-users.component';
 import { ActiveUsersComponent } from './Section9/active-users/active-users.component';
+import { Section15Component } from './Section 15 Forms/section15/section15.component';
+import { TemplateformsAComponent } from './Section 15 Forms/Template Assignment/templateforms-a/templateforms-a.component';
 
 
 
@@ -33,6 +35,8 @@ import { ActiveUsersComponent } from './Section9/active-users/active-users.compo
     Section9mainComponent,
     InactiveUsersComponent,
     ActiveUsersComponent,
+    Section15Component,
+    TemplateformsAComponent,
   ],
   imports: [
     BrowserModule,

@@ -358,7 +358,7 @@ Two Approaches
     Form is created programmatically and synchronized with the DOM
 
 
-Template Driven Forms:
+<h1>Template Driven Forms:</h1>
 
 ```
 
@@ -388,6 +388,33 @@ then the valid attribute will return false if no text is entered.
 ```
 
 valid: false
+
+```
+
+In order to get access to the form element in your component logic class
+
+```
+
+<form #aform="ngForm">
+
+```
+
+and within your component logic use ViewChild
+
+```
+
+@ViewChild('aform',{static:false}) signUpForm?:NgForm;
+
+```
+
+To access input properties in template
+
+```
+
+<#emailInput="ngModel">
+
+// and to use
+<p *ngIf="!emailInput.valid && emailInput.touched">Please enter valid an email</p>
 
 ```
 
